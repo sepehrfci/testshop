@@ -17,6 +17,8 @@ Route::get('/', function () {
     return view('client.layout.master');
 });
 Route::get('/dashboard', function () {
-        return view('admin.layout.master');
+        return view('admin.layout.index');
 });
+
+Route::get("dashboard/category" , ["App\\Http\\Controllers\\CategoryController","index"]);
 
