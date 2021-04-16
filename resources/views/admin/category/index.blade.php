@@ -61,7 +61,7 @@
                                                                 </div>
                                                                 <div class="modal-footer">
                                                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">بستن</button>
-                                                                    <form action="category/{{ $category->id }}" method="POST">
+                                                                    <form action="{{route('category.destroy',$category)}}" method="POST">
                                                                         @csrf
                                                                         @method("DELETE")
                                                                         <button type="submit" class="btn btn-danger">حذف</button>
@@ -72,7 +72,7 @@
                                                     </div>
                                         </td>
                                         <td>
-                                            <a class="btn btn-primary" href="/dashboard/category/{{ $category->id }}/edit">
+                                            <a class="btn btn-primary" href="{{route('category.edit',$category)}}">
                                                 ویرایش
                                             </a>
                                         </td>

@@ -24,7 +24,7 @@
                                     @endif
                                     <label for="fname">عنوان موضوع</label>
                                     <input type="text" id="fname" name="title" placeholder="عنوان موضوع را وارد کنید">
-                                    <label for="country">موضوع پدر</label>
+                                    <label for="country">موضوع والد</label>
                                     <select id="country" name="category_id">
                                         <option value="">--بدون موضوع--</option>
                                         @if($categories->count()>0)
