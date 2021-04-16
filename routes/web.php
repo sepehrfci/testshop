@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\CategoryController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,5 +20,7 @@ Route::get('/dashboard', function () {
         return view('admin.layout.index');
 });
 
-Route::get("dashboard/category" , ["App\\Http\\Controllers\\CategoryController","index"]);
+Route::prefix("/dashboard")->group(function (){
+    Route::resource("/category",CategoryController::class);
+});
 
