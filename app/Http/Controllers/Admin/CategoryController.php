@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Models\Category;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Redirect;
-use phpDocumentor\Reflection\Types\Boolean;
 use Illuminate\Support\Facades\Validator;
+use App\Http\Controllers\Controller;
 
 class CategoryController extends Controller
 {
@@ -19,8 +19,10 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::all();
-        return view("admin.category.index",compact("categories"));
+        $categories = Category::query()->where([
+            'category_id' => null
+        ])->get();
+        return view("Admin.category.index",compact("categories"));
     }
 
     /**
@@ -30,8 +32,10 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        $categories = Category::all();
-        return view("admin.category.create",compact("categories"));
+        $categories = Category::query()->where([
+            'category_id' => null
+        ])->get();
+        return view("Admin.category.create",compact("categories"));
     }
 
     /**
@@ -78,9 +82,10 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        $category = Category::all()->find($category->id);
-        $categories = Category::all();
-        return view("admin.category.edit",[
+        $categories = Category::query()->where([
+            'category_id' => null
+        ])->get();
+        return view("Admin.category.edit",[
             "categories" => $categories,
             "category" => $category
         ]);

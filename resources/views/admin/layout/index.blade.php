@@ -1,4 +1,5 @@
 @extends("admin.layout.master")
+@section('title','داشبورد مدیریت')
 @section("content")
 
     <div class="main-content">

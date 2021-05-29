@@ -1,5 +1,5 @@
 @extends("admin.layout.master")
-
+@section('title','ویرایش موضوع')
 @section("content")
     <!-- Main Content Area -->
     <div class="main-content">
@@ -29,14 +29,12 @@
                                     <select id="country" name="category_id">
                                         <option value="">--بدون موضوع--</option>
                                         @if($categories->count()>0)
-                                            @foreach($categories as $category1)
-
-                                                @if($category1->id!==$category->id)
-
-                                                <option value="{{ $category1->id }}" @if($category->category_id==$category1->id)
-                                                    selected
-                                                    @endif
-                                                    >{{ $category1->title }}</option>
+                                            @foreach($categories as $parent)
+                                                <option value="{{ $parent->id }}">{{ $parent->title }}</option>
+                                                @if(!is_null($parent->children))
+                                                    @foreach($parent->children as $child)
+                                                        <option value="{{ $child->id }}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- {{ $child->title }}</option>
+                                                    @endforeach
                                                 @endif
                                             @endforeach
                                         @endif

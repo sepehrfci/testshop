@@ -1,7 +1,12 @@
 <?php
 
+use App\Http\Controllers\Admin\BrandController;
+use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\ProductController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\Client\HomeController;
+use App\Http\Controllers\Client\ProductController as ClientProductController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,14 +18,20 @@ use App\Http\Controllers\CategoryController;
 |
 */
 
-Route::get('/', function () {
-    return view('client.layout.master');
-});
-Route::get('/dashboard', function () {
-        return view('admin.layout.index');
-});
+Route::get('/',[HomeController::class,'index']);
+
 
 Route::prefix("/dashboard")->group(function (){
+
+    Route::get('/', function () {
+        return view('Admin.layout.index');
+    });
+
     Route::resource("/category",CategoryController::class);
+    Route::resource("/brands",BrandController::class);
+    Route::resource("/products",ProductController::class);
 });
+
+Route::get('/product/{product}', [ClientProductController::class,'index'])->name('client.product.index');
+
 

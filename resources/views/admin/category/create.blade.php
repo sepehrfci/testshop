@@ -1,5 +1,5 @@
 @extends("admin.layout.master")
-
+@section('title','ایجاد موضوع جدید')
 @section("content")
     <!-- Main Content Area -->
     <div class="main-content">
@@ -28,8 +28,13 @@
                                     <select id="country" name="category_id">
                                         <option value="">--بدون موضوع--</option>
                                         @if($categories->count()>0)
-                                            @foreach($categories as $category)
-                                                <option value="{{ $category->id }}">{{ $category->title }}</option>
+                                            @foreach($categories as $parent)
+                                                <option value="{{ $parent->id }}">{{ $parent->title }}</option>
+                                                @if(!is_null($parent->children))
+                                                    @foreach($parent->children as $child)
+                                                        <option value="{{ $child->id }}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- {{ $child->title }}</option>
+                                                    @endforeach
+                                                @endif
                                             @endforeach
                                         @endif
                                     </select>

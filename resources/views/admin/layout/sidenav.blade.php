@@ -6,11 +6,11 @@
             <ul class="sidebar-menu" data-widget="tree">
                 <li class="active"><a href="index-2.html"><i class="zmdi zmdi-view-dashboard"></i><span>داشبورد</span></a></li>
                 <li class="treeview">
-                    <a href="javascript:void(0)"><i class="zmdi zmdi-apps"></i> <span>برنامه ها</span> <i class="fa fa-angle-left"></i></a>
+                    <a href="javascript:void(0)"><i class="zmdi zmdi-apps"></i> <span>دسترسی سریع</span> <i class="fa fa-angle-left"></i></a>
                     <ul class="treeview-menu">
-                        <li><a href="calendar.html">تقویم</a></li>
-                        <li><a href="chat-box.html">گپ</a></li>
-                        <li><a href="project-list.html">لیست پروژه</a></li>
+                        <li><a href="{{route('category.index')}}">موضوعات</a></li>
+                        <li><a href="{{route('brands.index')}}">برند ها</a></li>
+                        <li><a href="{{route('products.index')}}">محصولات</a></li>
                         <li><a href="project-details.html">جزئیات پروژه</a></li>
                     </ul>
                 </li>
