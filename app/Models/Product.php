@@ -33,8 +33,13 @@ class Product extends Model
         return $this->hasOne(Discount::class);
     }
 
-    public function costWithDiscount()
+    public function getCostWithDiscountAttribute()
     {
         return $this->getAttribute('cost') - $this->getAttribute('cost') * $this->discount->value/100;
+    }
+
+    public function getHasDiscountAttribute()
+    {
+        return $this->discount()->exists();
     }
 }
