@@ -27,4 +27,14 @@ class Product extends Model
     {
         return $this->hasMany(Picture::class);
     }
+
+    public function discount()
+    {
+        return $this->hasOne(Discount::class);
+    }
+
+    public function costWithDiscount()
+    {
+        return $this->getAttribute('cost') - $this->getAttribute('cost') * $this->discount->value/100;
+    }
 }

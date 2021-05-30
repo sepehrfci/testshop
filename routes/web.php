@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\DiscountController;
 use App\Http\Controllers\Admin\PictureController;
 use App\Http\Controllers\Admin\ProductController;
 use Illuminate\Support\Facades\Route;
@@ -31,9 +32,16 @@ Route::prefix("/dashboard")->group(function (){
     Route::resource("/category",CategoryController::class);
     Route::resource("/brands",BrandController::class);
     Route::resource("/products",ProductController::class);
-    Route::get('products/pictures/{product}',[PictureController::class,'index'])->name('products.pictures');
-    Route::post('products/pictures/{product}/store',[PictureController::class,'store'])->name('products.pictures.store');
-    Route::delete('products/picture/{picture}/{product}/destroy',[PictureController::class,'destroy'])->name('products.pictures.destroy');
+    Route::get('/products/pictures/{product}',[PictureController::class,'index'])->name('products.pictures');
+    Route::post('/products/pictures/{product}/store',[PictureController::class,'store'])->name('products.pictures.store');
+    Route::delete('/products/picture/{picture}/{product}/destroy',[PictureController::class,'destroy'])->name('products.pictures.destroy');
+    //Route::resource('/products/discount',DiscountController::class);
+    Route::get('/products/discount/{product}/create',[DiscountController::class,'create'])->name('discount.create');
+    Route::post('/products/discount/{product}/store',[DiscountController::class,'store'])->name('discount.store');
+    Route::get('/products/discount/{product}/edit',[DiscountController::class,'edit'])->name('discount.edit');
+    Route::patch('/products/discount/{product}/update',[DiscountController::class,'update'])->name('discount.update');
+    Route::delete('/products/discount/{product}/destroy',[DiscountController::class,'destroy'])->name('discount.destroy');
+
 });
 
 Route::get('/product/{product}', [ClientProductController::class,'index'])->name('client.product.index');
