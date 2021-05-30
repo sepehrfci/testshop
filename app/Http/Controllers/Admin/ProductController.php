@@ -10,6 +10,7 @@ use App\Models\Category;
 use App\Models\Product;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class ProductController extends Controller
@@ -110,12 +111,12 @@ class ProductController extends Controller
             ]);
         }
         if ($request->hasFile('image')){
-            $format = explode('.',$request->file('image')->getClientOriginalName());
-            $name = Carbon::now()->timestamp . Carbon::now()->timestamp . '.' . $format[1];
+            Storage::delete($product->getAttribute('image'));
+            //$format = explode('.',$request->file('image')->getClientOriginalName());
+            $name = Carbon::now()->timestamp . Carbon::now()->timestamp . '.' . $request->file('image')->extension();
             $path = $request->file('image')->storeAs('public/products',$name);
         }
-
-        Product::query()->update([
+        $product->update([
             'title' => $request->get('title',$product->getAttribute('title')),
             'slug' => Str::slug($request->get('slug',$product->getAttribute('slug'))),
             'description' => $request->get('description',$product->getAttribute('description')),

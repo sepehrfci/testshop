@@ -30,6 +30,7 @@
                                     <th>برند</th>
                                     <th>موضوع</th>
                                     <th>تاریخ ایجاد</th>
+                                    <th>عکس ها</th>
                                     <th>حذف</th>
                                     <th>ویرایش</th>
 
@@ -48,6 +49,7 @@
                                         <td> {{ $product->brand->name }}</td>
                                         <td> {{ $product->category->title }}</td>
                                         <td>{{ $product->created_at }}</td>
+                                        <td><a class="btn btn-fill-warning" href="{{route('products.pictures',$product)}}">مدریت عکس ها</a></td>
                                         <td>
                                                 <!-- Button trigger modal -->
                                                     <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModalScrollable{{ $product->id }}">
